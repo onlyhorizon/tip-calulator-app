@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+	--white: #fff;
+	--dark-green: #00474B;
+	--green: #26C2AE;
+	--gray: #7F9D9F;
+	--input: #F3F9FA;
+	--custom: #547878;
+	--red: #E17457;
+}
+* {
+	box-sizing: border-box;
+}
+body {
+	background-color: #c5e4e7;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+	font-family: "Space Mono", Arial, sans-serif;
+	color: var(--gray);
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 1.6em;
+}
+p {
+	margin: 0;
+}
+#logo {
+	width: 86px;
+	display: block;
+	margin: 0 0 88px;
+}
+#calculator {
+	max-width: 920px;
+	background-color: var(--white);
+	border-radius: 25px;
+	padding: 32px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+#calculator-box {
+	width: 379px;
+	margin-right: 64px;
+}
+#result-box {
+	width: 413px;
+	height: 417px;
+	background-color: var(--dark-green);
+	color: var(--white);
+	border-radius: 15px;
+	padding: 40px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+#tip-buttons {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	margin: 6px 0 0;
+}
+button {
+	width: 117px;
+	background-color: var(--dark-green);
+	color: var(--white);
+	font-family: "Space Mono", Arial, sans-serif;
+	font-size: 24px;
+	line-height: 1.5em;
+	border-radius: 5px;
+	border: none;
+	font-weight: 700;
+	padding: 6px;
+	cursor: pointer;
+}
+button:nth-of-type(4), button:nth-of-type(5), #custom {
+	margin: 16px 0 0;
+}
+#bill, #number-of-people {
+	background-color: var(--input);
+	border: 0;
+	width: 100%;
+	border-radius: 5px;
+	height: 48px;
+	margin: 6px 0 0;
+	text-align: right;
+	color: var(--dark-green);
+	font-size: 24px;
+	line-height: 1.5em;
+	padding: 6px 17px;
+	font-weight: 700;
+}
+#result-box input {
+	background-color: var(--dark-green);
+	color: var(--green);
+	font-size: 48px;
+	line-height: 1em;
+	font-weight: 700;
+	text-align: right;
+	border: 0;
+	width: 200px;
+	padding: 0;
+	letter-spacing: -1px;
+}
+#reset {
+	background-color: var(--green);
+	color: var(--dark-green);
+	border-radius: 5px;
+	text-align: center;
+	width: 100%;
+	padding: 9px;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 1.5em;
+}
+#bill, #tip-buttons {
+	margin-bottom: 40px !important;
+}
+#bill {
+	background: url(images/icon-dollar.svg) center left 17px no-repeat;
+	background-color: var(--input);
+	background-size: 10px;
+}
+#number-of-people {
+	background: url(images/icon-person.svg) center left 17px no-repeat;
+	background-color: var(--input);
+	background-size: 13px;
+}
+.active {
+	background-color: var(--green);
+	color: var(--dark-green);
+}
+#flex-amount, #flex-total {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: var(--white);
+	margin: 0 0 40px;
+}
+#result-box small {
+	font-size: 13px;
+	line-height: 1.45em;
+	color: var(--gray);
+}
+#custom {
+	width: 117px;
+	background-color: var(--input);
+	color: var(--custom);
+	font-family: "Space Mono", Arial, sans-serif;
+	font-size: 24px;
+	line-height: 1.5em;
+	border-radius: 5px;
+	border: none;
+	font-weight: 700;
+	padding: 6px;
+	text-align: center;
+	cursor: pointer;
+}
+#required-text {
+	display: flex;
+	justify-content: space-between;
+}
+#zero {
+	color: var(--red);
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+input[type=number] {
+	-moz-appearance: textfield; /* Firefox */
+}
+.required {
+	border: 1px solid #E17457 !important
+}
+.dnone {
+	display: none;
+}
+.dblock {
+	display: block;
+}
+.active-custom-tip, .active-custom-tip:focus, .active-custom-tip:focus-visible {
+	border: 2px solid #26C2AE !important;
+	outline: none !important;
+}
+@media screen and (max-width: 700px) {
+	body {
+		align-items: flex-start;
+		justify-content: flex-start;
+		height: inherit;
+	}
+	#calculator {
+		flex-direction: column;
+		padding: 30px;
+	}
+	#calculator-box {
+		margin: 0;
+		padding: 0;
+		max-width: 100%;
+		height: inherit;
+	}
+	#result-box {
+		height: inherit;
+		max-width: 100%;
+		margin: 40px 0 0;
+	}
+	main {
+		max-width: 100%;
+		padding: 40px 0;
+		margin: 0 auto;
+	}
+	button {
+		width: 48%;
+		margin: 16px 0 0;
+	}
+	#custom {
+		width: 48%;
+	}
+	#result-box input {
+		font-size: 26px;
+		line-height: 1em;
+		max-width: 100%;
+	}
+	#flex-amount div:first-of-type, #flex-total div:first-of-type {
+		width: 50%;
+	}
+	#flex-amount div:last-of-type, #flex-total div:last-of-type {
+		width: 50%;
+	}
+	#flex-amount, #flex-total {
+		align-items: flex-start;
+	}
+	#tip-buttons {
+		margin-top: -10px;
+	}
+	#logo {
+		margin: 0 0 40px;
+	}
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link href="styles.css" rel="stylesheet">
+  <title>Frontend Mentor | Tip calculator app</title>
+</head>
+<body>
+  <main>
+    <center><img src="images/logo.svg" alt="Logo" id="logo"></center>
+    <div id="calculator">
+      <div id="calculator-box">
+        <p>Bill</p>
+        <input type="text" id="bill" oninput="setBill()" onkeypress="return isNumberKey(event)">
+
+        <p>Select Tip %</p>
+        <div id="tip-buttons">
+          <button type="button" value="0.05" class="tip-button">5%</button>
+          <button type="button" value="0.1" class="tip-button">10%</button>
+          <button type="button" value="0.15" class="active tip-button" id="default">15%</button>
+          <button type="button" value="0.25" class="tip-button">25%</button>
+          <button type="button" value="0.50" class="tip-button">50%</button>
+          <input type="number" id="custom" placeholder="Custom" onclick="changeCustomStyles()" oninput="(setCustomTipRate())" onkeypress="return isNumberKey(event)">
+        </div><!-- tip-buttons -->
+
+        <div id="required-text">
+          <p>Number of People</p>
+          <p class="dnone" id="zero">Can't be zero</p>
+        </div><!-- required-text -->
+        <input type="text" id="number-of-people" oninput="setPersons()" onkeypress="return isNumberKey(event)">
+      </div><!-- calculator-box -->
+      <div id="result-box">
+        <div>
+          <div id="flex-amount">
+            <div>
+              Tip Amount<br>
+              <small>/ person</small>
+            </div>
+            <div>
+              <input type="text" id="tip-amount" readonly placeholder="$0.00">
+            </div>
+          </div><!-- flex-amount -->
+
+          <div id="flex-total">
+            <div>
+              Total<br>
+              <small>/ person</small>
+            </div>
+            <div>
+              <input type="text" id="total-per-person" readonly placeholder="$0.00">
+            </div>
+          </div><!-- flex-total -->
+        </div>
+
+        <button type="button" id="reset" onclick="reset()">RESET</button>
+      </div><!-- result-box -->
+    </div><!-- calculator -->
+  </main>
+</body>
+<script>
+  var tipAmount = 0.15;
+  var persons = 0;
+  var bill, totalTip, tipPerPerson;
+  const btnArray = document.querySelectorAll(".tip-button");
+  const totalTipInputField = document.getElementById("tip-amount");
+  const tipPerPersonInputField = document.getElementById("total-per-person");
+  const zeroTextField = document.getElementById("zero");
+  const personInputField = document.getElementById("number-of-people");
+  const billInputField = document.getElementById("bill");
+  const customTipRateField = document.getElementById("custom");
+
+  for (i = 0; i < btnArray.length; i++) {
+    btnArray[i].addEventListener("click", setTipAmount);
+  }
+
+  function setTipAmount() {
+    tipAmount = event.target.value;
+    btnArray.forEach(item => item.classList.remove('active'));
+    event.target.classList.add('active');
+    custom.classList.remove("active-custom-tip");
+    custom.value = "";
+    calculate()
+  }
+
+  function setBill() {
+    if (event.target.value.length > 4) {
+      event.target.value = event.target.value.slice(0, 4);
+    }
+    bill = event.target.value;
+    calculate();
+  }
+
+  function setPersons() {
+    if (event.target.value.length > 2) {
+      event.target.value = event.target.value.slice(0, 2);
+    }
+    persons = event.target.value;
+    calculate();
+  }
+
+  function isNumberKey(evt) {
+    const charCode = evt.which ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
+
+  function calculate() {
+    if (persons == 0 ?? "") {
+      zero.classList.add("dblock");
+      personInputField.classList.add("required")
+    } else {
+      totalTip = bill * tipAmount;
+      tipPerPerson = bill * tipAmount / persons;
+      totalTipInputField.value = "$" + totalTip.toFixed(2);
+      tipPerPersonInputField.value = "$" + tipPerPerson.toFixed(2);
+      zero.classList.remove("dblock")
+      personInputField.classList.remove("required")
+    }
+  }
+
+  function changeCustomStyles() {
+    custom.classList.add("active-custom-tip")
+    btnArray.forEach(item => item.classList.remove('active'));
+  }
+
+  function setCustomTipRate() {
+    if (event.target.value.length > 2) {
+      event.target.value = event.target.value.slice(0, 2);
+    }
+    tipAmount = event.target.value / 100;
+    calculate();
+  }
+
+  function reset() {
+    bill = "";
+    totalTip = "";
+    tipPerPerson = "";
+    persons = "";
+    tipAmout = 0.15;
+    totalTipInputField.value = "";
+    tipPerPersonInputField.value ="";
+    billInputField.value = "";
+    personInputField.value = "";
+    btnArray.forEach(item => item.classList.remove('active'));
+    custom.classList.remove("active-custom-tip");
+    custom.value = "";
+  }
+</script>
+</html>
