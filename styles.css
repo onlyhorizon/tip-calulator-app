@@ -29,7 +29,7 @@ p {
 	margin: 0;
 }
 h1 {
-	display: none;
+	visibility: hidden;
 }
 #logo {
 	width: 86px;
