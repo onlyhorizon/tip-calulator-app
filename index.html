@@ -10,10 +10,11 @@
 </head>
 <body>
   <main>
-    <center><img src="images/logo.svg" alt="Logo" id="logo"></center>
+    <h1>SPLITTER</h1>
+    <img src="images/logo.svg" alt="Logo" id="logo">
     <div id="calculator">
       <div id="calculator-box">
-        <p>Bill</p>
+        <label for="bill">Bill</label>
         <input type="text" id="bill" oninput="setBill()" onkeypress="return isNumberKey(event)">
 
         <p>Select Tip %</p>
@@ -27,7 +28,7 @@
         </div><!-- tip-buttons -->
 
         <div id="required-text">
-          <p>Number of People</p>
+          <label for="people">Number of People</label>
           <p class="dnone" id="zero">Can't be zero</p>
         </div><!-- required-text -->
         <input type="text" id="number-of-people" oninput="setPersons()" onkeypress="return isNumberKey(event)">
